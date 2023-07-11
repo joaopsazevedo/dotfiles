@@ -1,0 +1,9 @@
+[user]
+	name = Joao Azevedo
+	email = joaopsazevedo@outlook.com
+[core]
+	editor = nvim
+[color]
+	ui = auto
+[init]
+	defaultBranch = main
