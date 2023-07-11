@@ -21,10 +21,16 @@ if [ -d "$HOME/.pyenv" ] && [ -f "$HOME/.pyenv/shims/python" ]; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
-# JetBrains Toolbox App
+# JetBrains Toolbox App in Linux and MacOS
 if [ -d "$HOME/.local/share/JetBrains/Toolbox/scripts" ] ; then
     export PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 fi
+if [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ] ; then
+    export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
+fi
+
+# MacOS Homebrew
+[ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Source local profile settings
 [ -f "$HOME/.local_env" ] && source "$HOME/.local_env"
