@@ -1,2 +1,2 @@
 mkdir -p $HOME/bin
-stow --restow --target=$HOME alacritty apps bash git scripts tmux zsh
+stow --restow --target=$HOME alacritty apps bash git neovim scripts tmux zsh
