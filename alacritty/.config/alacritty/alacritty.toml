@@ -1,4 +1,4 @@
-import = ["/home/azevedo/.config/alacritty/catppuccin/catppuccin-latte.toml"]
+import = ["~/.config/alacritty/catppuccin/catppuccin-latte.toml"]
 live_config_reload = true
 
 [env]
