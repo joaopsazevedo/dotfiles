@@ -65,9 +65,7 @@ vim.cmd('colorscheme catppuccin-latte')
 
 require('lualine').setup {
     options = {
-        icons_enabled = false,
-        section_separators = '',
-        component_separators = '',
+        icons_enabled = true,
         theme = 'catppuccin-latte',
     }
 }
