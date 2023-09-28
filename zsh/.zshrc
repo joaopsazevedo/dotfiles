@@ -73,7 +73,7 @@ ZSH_THEME="ys"
 
 source ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
 
-plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting nvm)
 
 source $ZSH/oh-my-zsh.sh
 
