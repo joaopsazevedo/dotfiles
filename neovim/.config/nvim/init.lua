@@ -61,12 +61,12 @@ vim.keymap.set('n', '<leader>fb', ':Buffers<CR>', { noremap = true, silent = tru
 vim.keymap.set('n', '<leader>ag', ':Ag<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>rg', ':Rg<CR>', { noremap = true, silent = true })
 
-vim.cmd('colorscheme catppuccin-latte')
+vim.cmd('colorscheme catppuccin-macchiato')
 
 require('lualine').setup {
     options = {
         icons_enabled = true,
-        theme = 'catppuccin-latte',
+        theme = 'catppuccin-macchiato',
     }
 }
 require('lsp')

@@ -71,7 +71,7 @@ ZSH_THEME="ys"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-source ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
+source ~/.zsh/catppuccin_macchiato-zsh-syntax-highlighting.zsh
 
 plugins=(git zsh-syntax-highlighting nvm)
 
