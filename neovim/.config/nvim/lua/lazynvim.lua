@@ -25,7 +25,11 @@ local plugins = {
         'junegunn/fzf.vim',
         dependencies = { 'junegunn/fzf', build = ':call fzf#install()' }
     },
-    { 'mhartington/formatter.nvim' }
+    { 'mhartington/formatter.nvim' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/nvim-cmp' },
+    { 'hrsh7th/cmp-vsnip' },
+    { 'hrsh7th/vim-vsnip' }
 }
 
 require("lazy").setup(plugins)
