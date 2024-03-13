@@ -29,6 +29,8 @@ lspconfig.lua_ls.setup {}
 lspconfig.pyright.setup {}
 -- Rust
 lspconfig.rust_analyzer.setup {}
+-- TypeScript
+lspconfig.tsserver.setup {}
 
 vim.diagnostic.config({
     virtual_text = true
