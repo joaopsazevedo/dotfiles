@@ -94,9 +94,33 @@ cmp.setup {
                 end
             end
         }),
-        ['<Tab>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'i', 'c' }) }),
+        ['<TAB>'] = cmp.mapping({
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+                else
+                    fallback()
+                end
+            end
+        }) }),
     sources = {
         { name = 'nvim_lsp' },
         { name = 'vsnip' },
     }
 }
+cmp.setup.cmdline(':', {
+    completion = {
+        autocomplete = false,
+    },
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        {
+            name = 'cmdline',
+            option = {
+                ignore_cmds = { 'Man', '!' },
+            }
+        }
+    })
+})
