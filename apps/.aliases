@@ -1,4 +1,11 @@
 alias vim=nvim
 alias less=more
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     alias copy="xclip -selection clipboard -rmlastnl";;
+    Darwin*)    alias copy="tr -d '\n' | pbcopy";;
+    *)          ;;
+esac
