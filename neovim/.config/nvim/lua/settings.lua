@@ -1,10 +1,13 @@
-vim.g.mapleader = ","
+vim.g.mapleader = " "
+vim.g.have_nerd_font = true
 
 vim.opt.backup = false
 vim.opt.swapfile = false
 
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+vim.opt.signcolumn = "yes"
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
