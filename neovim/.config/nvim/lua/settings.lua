@@ -35,7 +35,7 @@ vim.opt.wildignore = "*.swp,*.bak,*.pyc,*.class"
 vim.opt.title = true
 
 vim.opt.termguicolors = true
-vim.opt.background = "light"
+vim.opt.background = "dark"
 
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
