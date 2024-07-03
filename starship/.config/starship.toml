@@ -1,0 +1,91 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """$username$hostname$os${custom.directory_symbol_mac}${custom.directory_symbol_linux}$directory$git_branch$git_status$rust$python$nodejs$time$status$cmd_duration\n$character"""
+
+add_newline = true
+
+[username]
+disabled = false
+format = 'with [$user]($style)'
+show_always = false
+style_root = 'bold red'
+style_user = 'bold white'
+
+[hostname]
+disabled = false
+format = '[@$hostname ]($style)'
+ssh_only = true
+style = 'bold white'
+
+[os]
+disabled = false
+format = '[$symbol]($style) '
+style = 'bold blue'
+
+[os.symbols]
+Macos = ' '
+Ubuntu = ' '
+
+[custom.directory_symbol_mac]
+command = 'if [[ $PWD == $HOME ]]; then echo  ; else echo  ; fi'
+format = '[$output]($style)  '
+os = 'macos'
+style = 'bold blue'
+when = true
+
+[custom.directory_symbol_linux]
+command = 'if [[ $PWD == $HOME ]]; then echo  ; else echo  ; fi'
+format = '[$output]($style)  '
+os = 'linux'
+style = 'bold blue'
+when = true
+
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style) '
+home_symbol = '~'
+style = 'bold blue'
+truncate_to_repo = false
+truncation_length = 8
+truncation_symbol = '…/'
+
+[git_status]
+ahead = '⇡${count}'
+behind = '⇣${count} '
+deleted = '-${count} '
+format = '([$ahead$behind](bold green)[$modified](bold yellow)[$renamed](bold green)[$deleted](bold red)[$staged](bold cyan)[$untracked](bold blue) )'
+modified = '!${count} '
+renamed = '»${count} '
+staged = '*{count} '
+untracked = '?${count}'
+
+[rust]
+style = 'bold red'
+symbol = ' '
+
+[python]
+pyenv_version_name = true
+style = 'bold green'
+symbol = '󰌠 '
+
+[nodejs]
+style = 'bold red'
+symbol = '󰎙 '
+
+[time]
+disabled = false
+format = 'at [  $time]($style) '
+style = 'bold cyan'
+
+[status]
+disabled = false
+format = '[$symbol $status]($style) '
+style = 'bold red'
+symbol = '✘'
+
+[cmd_duration]
+show_milliseconds = true
+
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold green)'
