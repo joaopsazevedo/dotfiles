@@ -30,21 +30,21 @@ Windows = ' '
 
 [custom.directory_symbol_mac]
 command = 'if [[ $PWD == $HOME ]]; then echo  ; else echo  ; fi'
-format = '[$output]($style)  '
+format = '[$output  ]($style)'
 os = 'macos'
 style = 'bold blue'
 when = true
 
 [custom.directory_symbol_linux]
 command = 'if [[ $PWD == $HOME ]]; then echo  ; else echo  ; fi'
-format = '[$output]($style)  '
+format = '[$output  ]($style)'
 os = 'linux'
 style = 'bold blue'
 when = true
 
 [custom.directory_symbol_windows]
 command = 'if ($PWD.Path -eq $HOME) { " " } else { " " }'
-format = '[$output]($style)  '
+format = '[$output  ]($style)'
 os = 'windows'
 style = 'bold blue'
 when = true
