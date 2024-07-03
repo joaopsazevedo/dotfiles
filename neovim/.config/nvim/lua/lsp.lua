@@ -18,7 +18,9 @@ local get_als_settings = function()
 end;
 lspconfig.als.setup {
     settings = get_als_settings(),
-    root_dir = require("lspconfig.util").root_pattern('.als-settings.json', 'Makefile', '.git', '*.gpr')
+    root_dir = function()
+        return vim.loop.cwd()
+    end
 }
 -- Bash
 lspconfig.bashls.setup {}
