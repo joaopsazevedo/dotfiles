@@ -10,13 +10,13 @@ disabled = false
 format = 'with [$user]($style)'
 show_always = false
 style_root = 'bold red'
-style_user = 'bold white'
+style_user = 'bold grey'
 
 [hostname]
 disabled = false
 format = '[@$hostname ]($style)'
 ssh_only = true
-style = 'bold white'
+style = 'bold grey'
 
 [os]
 disabled = false
