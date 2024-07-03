@@ -42,6 +42,7 @@
     node_version            # node.js version
     time                    # current time
     status                  # exit code of the last command
+    command_execution_time  # duration of the last command
     # =========================[ Line #2 ]=========================
     newline                 # \n
     prompt_char             # prompt symbol
