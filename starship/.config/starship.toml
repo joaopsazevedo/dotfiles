@@ -64,7 +64,7 @@ deleted = '-${count} '
 format = '([$ahead_behind](bold green) [$modified](bold yellow)[$renamed](bold green)[$deleted](bold red)[$staged](bold cyan)[$untracked](bold blue) )'
 modified = '!${count} '
 renamed = '»${count} '
-staged = '*{count} '
+staged = '*${count} '
 untracked = '?${count}'
 
 [rust]
