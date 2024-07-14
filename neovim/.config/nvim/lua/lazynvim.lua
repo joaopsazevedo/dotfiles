@@ -33,6 +33,7 @@ local plugins = {
     { 'hrsh7th/cmp-cmdline' },
     { 'hrsh7th/cmp-vsnip' },
     { 'hrsh7th/vim-vsnip' },
+    { 'stevearc/oil.nvim' },
     {
         "folke/which-key.nvim",
         event = "VeryLazy",

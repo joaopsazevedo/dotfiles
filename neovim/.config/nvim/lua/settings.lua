@@ -62,3 +62,5 @@ vim.keymap.set("n", "<leader>fb", ":Buffers<CR>", { noremap = true, silent = tru
 vim.keymap.set("n", "<leader>ag", ":Ag<CR>", { noremap = true, silent = true, desc = "ag" })
 vim.keymap.set("n", "<leader>rg", ":Rg<CR>", { noremap = true, silent = true, desc = "rg" })
 
+require("oil").setup()
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
