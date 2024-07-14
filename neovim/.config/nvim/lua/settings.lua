@@ -57,7 +57,8 @@ vim.api.nvim_create_autocmd("Filetype", {
     command = "setlocal ts=3 sw=3 sts=0 expandtab",
 })
 
-vim.keymap.set("n", "<leader>ff", ":Files<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>fb", ":Buffers<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>ag", ":Ag<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>rg", ":Rg<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ff", ":Files<CR>", { noremap = true, silent = true, desc = "fzf" })
+vim.keymap.set("n", "<leader>fb", ":Buffers<CR>", { noremap = true, silent = true, desc = "buffers" })
+vim.keymap.set("n", "<leader>ag", ":Ag<CR>", { noremap = true, silent = true, desc = "ag" })
+vim.keymap.set("n", "<leader>rg", ":Rg<CR>", { noremap = true, silent = true, desc = "rg" })
+
