@@ -47,7 +47,8 @@ local plugins = {
                 desc = "Buffer Local Keymaps (which-key)",
             },
         },
-    }
+    },
+    { 'NMAC427/guess-indent.nvim' }
 }
 
 require("lazy").setup(plugins)
