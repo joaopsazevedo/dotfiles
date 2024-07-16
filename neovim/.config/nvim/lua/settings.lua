@@ -76,3 +76,5 @@ require('telescope').setup {
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})
 vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {})
 vim.keymap.set('n', '<leader>rg', require('telescope.builtin').live_grep, {})
+
+require('gitsigns').setup({})
