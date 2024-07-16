@@ -57,12 +57,22 @@ vim.api.nvim_create_autocmd("Filetype", {
     command = "setlocal ts=3 sw=3 sts=0 expandtab",
 })
 
-vim.keymap.set("n", "<leader>ff", ":Files<CR>", { noremap = true, silent = true, desc = "fzf" })
-vim.keymap.set("n", "<leader>fb", ":Buffers<CR>", { noremap = true, silent = true, desc = "buffers" })
-vim.keymap.set("n", "<leader>ag", ":Ag<CR>", { noremap = true, silent = true, desc = "ag" })
-vim.keymap.set("n", "<leader>rg", ":Rg<CR>", { noremap = true, silent = true, desc = "rg" })
-
 require("oil").setup()
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 require('guess-indent').setup {}
+
+require('telescope').setup {
+    defaults = {
+        mappings = {
+            i = {
+                ["<C-j>"] = require('telescope.actions').move_selection_next,
+                ["<C-k>"] = require('telescope.actions').move_selection_previous
+            }
+        }
+    }
+}
+
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})
+vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {})
+vim.keymap.set('n', '<leader>rg', require('telescope.builtin').live_grep, {})
