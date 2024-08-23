@@ -38,6 +38,8 @@ lspconfig.pyright.setup {}
 lspconfig.rust_analyzer.setup {}
 -- TypeScript
 lspconfig.tsserver.setup {}
+-- Go
+lspconfig.gopls.setup {}
 
 vim.diagnostic.config({
     virtual_text = true
