@@ -5,6 +5,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 -- Ada
 local lspconfig = require('lspconfig')
+local lspconfig_configs = require('lspconfig.configs')
 local get_als_settings = function()
     local als_settings = io.open('.als-settings.json', 'r');
     if als_settings then
@@ -16,11 +17,21 @@ local get_als_settings = function()
     end
     return {}
 end;
+local ada_language_server = 'ada_language_server'
+if vim.fn.has 'win32' == 1 then
+    ada_language_server = 'ada_language_server.exe'
+end
+lspconfig_configs.als = {
+    default_config = {
+        cmd = { ada_language_server },
+        filetypes = { 'ada' },
+        root_dir = function()
+            return vim.loop.cwd()
+        end
+    }
+}
 lspconfig.als.setup {
     settings = get_als_settings(),
-    root_dir = function()
-        return vim.loop.cwd()
-    end
 }
 -- Bash
 lspconfig.bashls.setup {}
@@ -55,7 +66,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Show diagn
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
-        local opts = { buffer = ev.buf }
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = ev.buf, desc = "Jump to the declaration" })
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = ev.buf, desc = "Jump to the definition" })
         vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { buffer = ev.buf, desc = "Jump to the type definition" })
