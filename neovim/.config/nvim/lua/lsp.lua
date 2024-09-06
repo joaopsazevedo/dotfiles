@@ -48,7 +48,7 @@ lspconfig.pyright.setup {}
 -- Rust
 lspconfig.rust_analyzer.setup {}
 -- TypeScript
-lspconfig.tsserver.setup {}
+lspconfig.ts_ls.setup {}
 -- Go
 lspconfig.gopls.setup {}
 
