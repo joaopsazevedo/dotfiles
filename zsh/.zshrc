@@ -81,7 +81,8 @@ export ZSH="$HOME/.oh-my-zsh"
 
 source ~/.zsh/catppuccin_macchiato-zsh-syntax-highlighting.zsh
 
-plugins=(zsh-syntax-highlighting fzf nvm rust)
+ZVM_INIT_MODE=sourcing
+plugins=(zsh-syntax-highlighting zsh-vi-mode fzf nvm rust)
 
 source $ZSH/oh-my-zsh.sh
 
