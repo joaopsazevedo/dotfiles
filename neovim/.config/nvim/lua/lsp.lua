@@ -7,7 +7,8 @@ capabilities.textDocument.completion.completionItem.snippetSupport = false
 local lspconfig = require('lspconfig')
 local lspconfig_configs = require('lspconfig.configs')
 local get_als_settings = function()
-    local als_settings = io.open('.als-settings.json', 'r');
+    -- First, check for .als-settings.json
+    local als_settings = io.open('.als-settings.json', 'r')
     if als_settings then
         local content = als_settings:read("*a")
         io.close(als_settings)
@@ -15,6 +16,26 @@ local get_als_settings = function()
             ada = vim.json.decode(content)
         }
     end
+
+    -- If .als-settings.json doesn't exist, search for a *.gpr file
+    local cwd = vim.loop.cwd()
+    local gpr_files = vim.fn.globpath(cwd, "*.gpr", false, true)
+    if vim.tbl_isempty(gpr_files) then
+        -- Also check for gpr files in gnat project directories (assuming a 'gnat' subdirectory exists)
+        gpr_files = vim.fn.globpath(cwd .. "/gnat", "*.gpr", false, true)
+    end
+
+    -- If a .gpr file is found, return settings for ALS
+    if not vim.tbl_isempty(gpr_files) then
+        return {
+            ada = {
+                projectFile = gpr_files[1], -- Use the first .gpr file found
+                scenarioVariables = {}
+            }
+        }
+    end
+
+    -- If no .als-settings.json or .gpr file is found, return an empty settings object
     return {}
 end;
 local ada_language_server = 'ada_language_server'
