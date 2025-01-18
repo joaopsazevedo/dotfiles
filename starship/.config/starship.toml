@@ -1,7 +1,7 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """$username$hostname$os$directory$git_branch$git_status$rust$python$nodejs$time$status$cmd_duration\n$character"""
+format = """$username$hostname$directory$git_branch$git_status$rust$python$nodejs$status$cmd_duration\n$character"""
 
 add_newline = true
 
@@ -96,5 +96,4 @@ symbol = '✘'
 show_milliseconds = true
 
 [character]
-success_symbol = '[➜](bold green)'
-error_symbol = '[➜](bold green)'
+error_symbol = '[❯](bold green)'
