@@ -34,7 +34,6 @@ local plugins = {
     { 'hrsh7th/cmp-cmdline' },
     { 'hrsh7th/cmp-vsnip' },
     { 'hrsh7th/vim-vsnip' },
-    { 'stevearc/oil.nvim' },
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -50,9 +49,7 @@ local plugins = {
         },
     },
     { 'NMAC427/guess-indent.nvim' },
-    { 'stevearc/dressing.nvim' },
-    { 'lewis6991/gitsigns.nvim' }
-
+    { 'stevearc/dressing.nvim' }
 }
 
 require("lazy").setup(plugins)
