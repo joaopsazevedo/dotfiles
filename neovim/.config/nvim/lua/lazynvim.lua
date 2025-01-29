@@ -14,7 +14,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-    { "folke/neodev.nvim",                opts = {} },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {},
+    },
     { "catppuccin/nvim",                  name = "catppuccin", priority = 1000 },
     { 'nvim-lualine/lualine.nvim' },
     { 'nvim-tree/nvim-web-devicons',      lazy = true },
