@@ -8,7 +8,7 @@ local lspconfig = require('lspconfig')
 local lspconfig_configs = require('lspconfig.configs')
 local get_als_settings = function()
     -- First, check for .als-settings.json
-    local als_settings = io.open('.als-settings.json', 'r')
+    local als_settings = io.open('.als.json', 'r')
     if als_settings then
         local content = als_settings:read("*a")
         io.close(als_settings)
