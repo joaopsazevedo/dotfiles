@@ -51,6 +51,21 @@ require("formatter").setup({
                 }
             end,
         },
+        yaml = {
+            function()
+                return {
+                    exe = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs",
+                    args = {
+                        "--stdin-filepath",
+                        formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
+                        "--parser",
+                        "yaml",
+                    },
+                    stdin = true,
+                    try_node_modules = true,
+                }
+            end,
+        },
         -- Use the special "*" filetype for defining formatter configurations on
         -- any filetype
         ["*"] = {

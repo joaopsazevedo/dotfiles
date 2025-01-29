@@ -72,6 +72,8 @@ lspconfig.rust_analyzer.setup {}
 lspconfig.ts_ls.setup {}
 -- Go
 lspconfig.gopls.setup {}
+-- yaml
+lspconfig.yamlls.setup {}
 
 vim.diagnostic.config({
     virtual_text = true
