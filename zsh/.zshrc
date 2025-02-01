@@ -79,7 +79,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-source ~/.zsh/catppuccin_macchiato-zsh-syntax-highlighting.zsh
+source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
 ZVM_INIT_MODE=sourcing
 plugins=(zsh-syntax-highlighting zsh-vi-mode fzf nvm rust)

@@ -5,9 +5,9 @@ require("lualine").setup({
     },
 })
 require("catppuccin").setup({
-    flavour = "macchiato",
+    flavour = "mocha",
     background = {
-        dark = "macchiato",
+        dark = "mocha",
     },
     transparent_background = true,
     term_colors = true
