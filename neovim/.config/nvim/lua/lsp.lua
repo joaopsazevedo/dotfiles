@@ -1,13 +1,22 @@
 require("mason").setup()
+require("mason-lspconfig").setup {
+    ensure_installed = {
+        "lua_ls",
+        "pyright",
+        "rust_analyzer",
+    },
+    automatic_installation = false
+}
 
 -- Setup language servers
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = false
+
 -- Ada
 local lspconfig = require('lspconfig')
 local lspconfig_configs = require('lspconfig.configs')
 local get_als_settings = function()
-    -- First, check for .als-settings.json
+    -- First, check for .als.json
     local als_settings = io.open('.als.json', 'r')
     if als_settings then
         local content = als_settings:read("*a")
@@ -17,15 +26,16 @@ local get_als_settings = function()
         }
     end
 
-    -- If .als-settings.json doesn't exist, search for a *.gpr file
+    -- If .als.json doesn't exist, search for GPR files
     local cwd = vim.loop.cwd()
     local gpr_files = vim.fn.globpath(cwd, "*.gpr", false, true)
+
+    -- If no GPR files were found, search for GPR files in the 'gnat' directory
     if vim.tbl_isempty(gpr_files) then
-        -- Also check for gpr files in gnat project directories (assuming a 'gnat' subdirectory exists)
         gpr_files = vim.fn.globpath(cwd .. "/gnat", "*.gpr", false, true)
     end
 
-    -- If a .gpr file is found, return settings for ALS
+    -- If a GPR files were found, use the first one
     if not vim.tbl_isempty(gpr_files) then
         return {
             ada = {
@@ -35,14 +45,14 @@ local get_als_settings = function()
         }
     end
 
-    -- If no .als-settings.json or .gpr file is found, return an empty settings object
+    -- If no .als.json or GPR file was found, return an empty settings object
     return {}
 end;
 local ada_language_server = 'ada_language_server'
 if vim.fn.has 'win32' == 1 then
     ada_language_server = 'ada_language_server.exe'
 end
-lspconfig_configs.als = {
+lspconfig_configs.ada_ls = {
     default_config = {
         cmd = { ada_language_server },
         filetypes = { 'ada' },
@@ -51,27 +61,36 @@ lspconfig_configs.als = {
         end
     }
 }
-lspconfig.als.setup {
+lspconfig.ada_ls.setup {
     settings = get_als_settings(),
 }
+
 -- Bash
 lspconfig.bashls.setup {}
+
 -- JavaScript/TypeScript
 lspconfig.eslint.setup {}
+
 -- Json
 lspconfig.jsonls.setup {}
+
 -- Lua
 lspconfig.lua_ls.setup {
     capabilities = capabilities
 }
+
 -- Python
 lspconfig.pyright.setup {}
+
 -- Rust
 lspconfig.rust_analyzer.setup {}
+
 -- TypeScript
 lspconfig.ts_ls.setup {}
+
 -- Go
-lspconfig.gopls.setup {}
+--lspconfig.gopls.setup {}
+
 -- yaml
 lspconfig.yamlls.setup {}
 
