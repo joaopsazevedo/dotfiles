@@ -1,12 +1,78 @@
 [user]
-	name = Joao Azevedo
-	email = joaopsazevedo@outlook.com
+    name = Joao Azevedo
+    email = joaopsazevedo@outlook.com
+
 [core]
-	editor = nvim
+    editor = nvim
+    autocrlf = input
+    compression = 9
+    fsync = none
+    whitespace = error
+
 [color]
-	ui = auto
+    ui = auto
+
+[color "blame"]
+    highlightRecent = black bold,1 year ago,white,1 month ago,default,7 days ago,blue
+
+[color "branch"]
+    current  = magenta
+    local    = default
+    remote   = yellow
+    upstream = green
+    plain    = blue
+
+[color "diff"]
+    meta       = black bold
+    frag       = magenta
+    context    = white
+    whitespace = yellow reverse
+
 [init]
-	defaultBranch = main
+    defaultBranch = main
+
+[blame]
+    coloring = highlightRecent
+    date = relative
+
+[diff]
+    context = 3
+    renames = copies
+    interHunkContext = 10
+
+[log]
+    abbrevCommit = true
+    graphColors = blue,yellow,cyan,magenta,green,red
+
+[status]
+    branch = true
+    short = true
+    showStash = true
+    showUntrackedFiles = all
+
+[pager]
+    branch = false
+    diff = diff-so-fancy | $PAGER
+
+[push]
+    default = current
+    followTags = true
+
+[pull]
+    rebase = true
+
+[submodule]
+    fetchJobs = 16
+
+[rebase]
+    autoStash = true
+
+[interactive]
+    diffFilter = diff-so-fancy --patch
+    singlekey = true
+
+[diff-so-fancy]
+    markEmptyLines = false
 
 [includeIf "gitdir:~/Developer/adacore/**"]
-	path = .gitconfig_adacore
+    path = .gitconfig_adacore
