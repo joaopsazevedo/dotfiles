@@ -1,7 +1,7 @@
--- Plugin manager
-require("lazynvim")
 -- General Neovim settings
 require("settings")
+-- Plugin manager
+require("lazynvim")
 -- Theme
 require("theme")
 -- LSP

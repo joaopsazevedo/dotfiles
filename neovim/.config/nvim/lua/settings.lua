@@ -56,20 +56,3 @@ vim.api.nvim_create_autocmd("Filetype", {
     pattern = "ada",
     command = "setlocal ts=3 sw=3 sts=0 expandtab",
 })
-
-require('guess-indent').setup {}
-
-require('telescope').setup {
-    defaults = {
-        mappings = {
-            i = {
-                ["<C-j>"] = require('telescope.actions').move_selection_next,
-                ["<C-k>"] = require('telescope.actions').move_selection_previous
-            }
-        }
-    }
-}
-
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})
-vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {})
-vim.keymap.set('n', '<leader>rg', require('telescope.builtin').live_grep, {})
