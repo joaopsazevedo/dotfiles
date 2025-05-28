@@ -73,6 +73,7 @@
 
 [diff-so-fancy]
     markEmptyLines = false
+    stripLeadingSymbols = false
 
 [includeIf "gitdir:~/Developer/adacore/**"]
     path = .gitconfig_adacore
