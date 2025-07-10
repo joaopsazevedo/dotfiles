@@ -1,3 +1,7 @@
+if [[ "$ZSH_INITIALIZED" == "1" ]]; then
+  return 0
+fi
+
 # Source aliases
 [ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
 
@@ -33,3 +37,5 @@ fi
 
 # Source local profile settings
 [ -f "$HOME/.local_env" ] && source "$HOME/.local_env"
+
+export ZSH_INITIALIZED=1
