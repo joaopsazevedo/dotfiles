@@ -2,18 +2,19 @@ require("mason").setup()
 require("mason-lspconfig").setup {
     ensure_installed = {
         "lua_ls",
-        "pyright",
-        "rust_analyzer",
     },
     automatic_installation = false
 }
 
 -- Setup language servers
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 
+-- Lua
+vim.lsp.enable("lua_ls")
+
 -- Ada
-local lspconfig = require('lspconfig')
 local lspconfig_configs = require('lspconfig.configs')
 local get_als_settings = function()
     -- First, check for .als.json
@@ -61,38 +62,16 @@ lspconfig_configs.ada_ls = {
         end
     }
 }
-lspconfig.ada_ls.setup {
-    settings = get_als_settings(),
-}
-
--- Bash
-lspconfig.bashls.setup {}
-
--- JavaScript/TypeScript
-lspconfig.eslint.setup {}
-
--- Json
-lspconfig.jsonls.setup {}
-
--- Lua
-lspconfig.lua_ls.setup {
-    capabilities = capabilities
-}
-
--- Python
-lspconfig.pyright.setup {}
+vim.lsp.enable("ada_ls")
+vim.lsp.config(
+    "ada_ls",
+    {
+        settings = get_als_settings(),
+    }
+)
 
 -- Rust
-lspconfig.rust_analyzer.setup {}
-
--- TypeScript
-lspconfig.ts_ls.setup {}
-
--- Go
---lspconfig.gopls.setup {}
-
--- yaml
-lspconfig.yamlls.setup {}
+vim.lsp.enable("rust_analyzer")
 
 vim.diagnostic.config({
     virtual_text = true
