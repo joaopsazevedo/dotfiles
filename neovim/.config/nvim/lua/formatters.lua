@@ -9,63 +9,63 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 local formatter_util = require("formatter.util")
 require("formatter").setup({
     filetype = {
-        python = {
-            function()
-                return {
-                    exe = vim.fn.stdpath("data") .. "/mason/packages/black/venv/bin/black",
-                    args = {
-                        "--stdin-filename",
-                        formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
-                        "--",
-                        "-",
-                    },
-                    stdin = true,
-                }
-            end,
-        },
-        javascript = {
-            function()
-                return {
-                    exe = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs",
-                    args = {
-                        "--stdin-filepath",
-                        formatter_util.escape_path(formatter_util.get_current_buffer_file_path())
-                    },
-                    stdin = true,
-                    try_node_modules = true,
-                }
-            end,
-        },
-        typescript = {
-            function()
-                return {
-                    exe = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs",
-                    args = {
-                        "--stdin-filepath",
-                        formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
-                        "--parser",
-                        "typescript",
-                    },
-                    stdin = true,
-                    try_node_modules = true,
-                }
-            end,
-        },
-        yaml = {
-            function()
-                return {
-                    exe = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs",
-                    args = {
-                        "--stdin-filepath",
-                        formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
-                        "--parser",
-                        "yaml",
-                    },
-                    stdin = true,
-                    try_node_modules = true,
-                }
-            end,
-        },
+        -- python = {
+        --     function()
+        --         return {
+        --             exe = vim.fn.stdpath("data") .. "/mason/packages/black/venv/bin/black",
+        --             args = {
+        --                 "--stdin-filename",
+        --                 formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
+        --                 "--",
+        --                 "-",
+        --             },
+        --             stdin = true,
+        --         }
+        --     end,
+        -- },
+        -- javascript = {
+        --     function()
+        --         return {
+        --             exe = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs",
+        --             args = {
+        --                 "--stdin-filepath",
+        --                 formatter_util.escape_path(formatter_util.get_current_buffer_file_path())
+        --             },
+        --             stdin = true,
+        --             try_node_modules = true,
+        --         }
+        --     end,
+        -- },
+        -- typescript = {
+        --     function()
+        --         return {
+        --             exe = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs",
+        --             args = {
+        --                 "--stdin-filepath",
+        --                 formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
+        --                 "--parser",
+        --                 "typescript",
+        --             },
+        --             stdin = true,
+        --             try_node_modules = true,
+        --         }
+        --     end,
+        -- },
+        -- yaml = {
+        --     function()
+        --         return {
+        --             exe = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs",
+        --             args = {
+        --                 "--stdin-filepath",
+        --                 formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
+        --                 "--parser",
+        --                 "yaml",
+        --             },
+        --             stdin = true,
+        --             try_node_modules = true,
+        --         }
+        --     end,
+        -- },
         -- Use the special "*" filetype for defining formatter configurations on
         -- any filetype
         ["*"] = {
@@ -76,11 +76,11 @@ require("formatter").setup({
     },
 })
 vim.api.nvim_create_augroup("__formatter__", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = "__formatter__",
-    pattern = "*.py",
-    command = ":FormatWrite",
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     group = "__formatter__",
+--     pattern = "*.py",
+--     command = ":FormatWrite",
+-- })
 vim.api.nvim_create_autocmd("BufWritePost", {
     group = "__formatter__",
     pattern = "*",
