@@ -78,7 +78,6 @@ style = 'bold red'
 symbol = ' '
 
 [python]
-pyenv_version_name = true
 style = 'bold green'
 symbol = '󰌠 '
 
