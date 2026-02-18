@@ -1,88 +1,94 @@
 -- LSP formatters
+
+local function has_lsp_formatter(bufnr, filter)
+    for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+        if client:supports_method("textDocument/formatting") and (not filter or filter(client)) then
+            return true
+        end
+    end
+    return false
+end
+
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*.json,*.rs,*.lua",
-    callback = function() vim.lsp.buf.format() end,
+    pattern = "*.json,*.rs,*.lua,*.py",
+    callback = function(args)
+        local bufnr = args.buf
+        if vim.b[args.buf].skip_autoformat_once then
+            return
+        end
+
+        if vim.bo[bufnr].filetype == "python" then
+            local ruff_filter = function(client)
+                return client.name == "ruff" or client.name == "ruff_lsp"
+            end
+
+            if not has_lsp_formatter(bufnr, ruff_filter) then
+                return
+            end
+
+            vim.lsp.buf.format({
+                bufnr = bufnr,
+                filter = ruff_filter,
+            })
+            return
+        end
+
+        if not has_lsp_formatter(bufnr) then
+            return
+        end
+
+        vim.lsp.buf.format({ bufnr = bufnr })
+    end,
     group = vim.api.nvim_create_augroup("lsp_document_format", { clear = true })
 })
 
--- CLI formatters
-local formatter_util = require("formatter.util")
-require("formatter").setup({
-    filetype = {
-        -- python = {
-        --     function()
-        --         return {
-        --             exe = vim.fn.stdpath("data") .. "/mason/packages/black/venv/bin/black",
-        --             args = {
-        --                 "--stdin-filename",
-        --                 formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
-        --                 "--",
-        --                 "-",
-        --             },
-        --             stdin = true,
-        --         }
-        --     end,
-        -- },
-        -- javascript = {
-        --     function()
-        --         return {
-        --             exe = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs",
-        --             args = {
-        --                 "--stdin-filepath",
-        --                 formatter_util.escape_path(formatter_util.get_current_buffer_file_path())
-        --             },
-        --             stdin = true,
-        --             try_node_modules = true,
-        --         }
-        --     end,
-        -- },
-        -- typescript = {
-        --     function()
-        --         return {
-        --             exe = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs",
-        --             args = {
-        --                 "--stdin-filepath",
-        --                 formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
-        --                 "--parser",
-        --                 "typescript",
-        --             },
-        --             stdin = true,
-        --             try_node_modules = true,
-        --         }
-        --     end,
-        -- },
-        -- yaml = {
-        --     function()
-        --         return {
-        --             exe = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/prettier/bin/prettier.cjs",
-        --             args = {
-        --                 "--stdin-filepath",
-        --                 formatter_util.escape_path(formatter_util.get_current_buffer_file_path()),
-        --                 "--parser",
-        --                 "yaml",
-        --             },
-        --             stdin = true,
-        --             try_node_modules = true,
-        --         }
-        --     end,
-        -- },
-        -- Use the special "*" filetype for defining formatter configurations on
-        -- any filetype
-        ["*"] = {
-            -- "formatter.filetypes.any" defines default configurations for any
-            -- filetype
-            require("formatter.filetypes.any").remove_trailing_whitespace,
-        },
-    },
-})
-vim.api.nvim_create_augroup("__formatter__", { clear = true })
--- vim.api.nvim_create_autocmd("BufWritePre", {
---     group = "__formatter__",
---     pattern = "*.py",
---     command = ":FormatWrite",
--- })
-vim.api.nvim_create_autocmd("BufWritePost", {
-    group = "__formatter__",
+-- Global trailing whitespace cleanup
+
+vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
-    command = ":FormatWrite",
+    callback = function(args)
+        if vim.b[args.buf].skip_autoformat_once then
+            return
+        end
+        local view = vim.fn.winsaveview()
+        vim.cmd([[keeppatterns silent! %s/\s\+$//e]])
+        vim.fn.winrestview(view)
+    end,
+    group = vim.api.nvim_create_augroup("trim_trailing_whitespace", { clear = true })
+})
+
+-- Write to disk without applying any formatting
+
+vim.api.nvim_create_user_command("WriteNoFormat", function(opts)
+    local buf = vim.api.nvim_get_current_buf()
+    vim.b[buf].skip_autoformat_once = true
+
+    local write_cmd = "write" .. (opts.bang and "!" or "")
+    if opts.args ~= "" then
+        write_cmd = write_cmd .. " " .. opts.args
+    end
+
+    local ok, err = pcall(vim.cmd, write_cmd)
+    vim.b[buf].skip_autoformat_once = false
+    if not ok then
+        error(err)
+    end
+end, {
+    bang = true,
+    nargs = "?",
+    complete = "file",
+    desc = "Write current buffer once without auto-formatting",
+})
+
+vim.api.nvim_create_user_command("W", function(opts)
+    local cmd = "WriteNoFormat" .. (opts.bang and "!" or "")
+    if opts.args ~= "" then
+        cmd = cmd .. " " .. opts.args
+    end
+    vim.cmd(cmd)
+end, {
+    bang = true,
+    nargs = "?",
+    complete = "file",
+    desc = "Alias for WriteNoFormat",
 })

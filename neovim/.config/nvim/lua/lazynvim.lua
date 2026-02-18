@@ -61,7 +61,6 @@ local plugins = {
             { "<leader>sr", function() Snacks.picker.resume() end,                desc = "Resume" },
         }
     },
-    { 'mhartington/formatter.nvim' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
     { 'hrsh7th/cmp-buffer' },
