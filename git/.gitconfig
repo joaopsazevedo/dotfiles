@@ -39,3 +39,6 @@
 
 [includeIf "gitdir:~/Developer/adacore/**"]
     path = .gitconfig_adacore
+
+[includeIf "gitdir:/data/Developer/adacore/**"]
+    path = .gitconfig_adacore
