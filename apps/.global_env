@@ -10,7 +10,7 @@ fi
 # Aliases
 [ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
 
-# User bin directories
+# User common bin directories
 if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
 fi
@@ -24,14 +24,6 @@ fi
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 ## Tools
-
-### JetBrains Toolbox
-if [ -d "$HOME/.local/share/JetBrains/Toolbox/scripts" ] ; then
-    export PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
-fi
-if [ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ] ; then
-    export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
-fi
 
 # MacOS Homebrew
 [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"

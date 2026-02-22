@@ -1,5 +1,3 @@
-alias vim=nvim
-alias less=more
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 
