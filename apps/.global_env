@@ -2,23 +2,7 @@ if [ -n "$TMUX" ]; then
     [ -f "$TMUX_ENV" ] && source "$TMUX_ENV"
 fi
 
-# ZSH_INITIALIZED is a guard for tmux
-if [[ "$ZSH_INITIALIZED" == "1" ]]; then
-  return 0
-fi
-
-# Aliases
-[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
-
-# User common bin directories
-if [ -d "$HOME/bin" ] ; then
-    export PATH="$HOME/bin:$PATH"
-fi
-if [ -d "$HOME/.local/bin" ] ; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
-
-# Programming Languages
+# Programming Languages (lazy loading)
 
 ## Rust and cargo
 activate_rust() {
@@ -62,6 +46,22 @@ activate_nvm() {
     echo "activate_nvm: could not find nvm.sh (checked $NVM_DIR and Homebrew paths)" >&2
     return 1
 }
+
+# ZSH_INITIALIZED is a guard for tmux
+if [[ "$ZSH_INITIALIZED" == "1" ]]; then
+  return 0
+fi
+
+# Aliases
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
+
+# User common bin directories
+if [ -d "$HOME/bin" ] ; then
+    export PATH="$HOME/bin:$PATH"
+fi
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 ## Tools
 
