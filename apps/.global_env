@@ -47,8 +47,8 @@ activate_nvm() {
     return 1
 }
 
-# ZSH_INITIALIZED is a guard for tmux
-if [[ "$ZSH_INITIALIZED" == "1" ]]; then
+# ZSH_INITIALIZED is a guard for tmux but not applicable inside podman
+if [[ "$ZSH_INITIALIZED" == "1" && "$VSCODE_PODMAN_TERMINAL" != "1" ]]; then
   return 0
 fi
 
