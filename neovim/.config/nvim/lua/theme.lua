@@ -1,15 +1,19 @@
-require("lualine").setup({
-    options = {
-        theme = "catppuccin",
-        icons_enabled = true,
-    },
-})
+local flavour = "mocha"
+
 require("catppuccin").setup({
-    flavour = "mocha",
+    flavour = flavour,
     background = {
-        dark = "mocha",
+        dark = flavour,
     },
     transparent_background = true,
     term_colors = true
 })
+
+require("lualine").setup({
+    options = {
+        theme = "catppuccin-" .. flavour,
+        icons_enabled = true,
+    },
+})
+
 vim.cmd.colorscheme("catppuccin")

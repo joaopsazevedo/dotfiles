@@ -1,6 +1,11 @@
 vim.g.mapleader = " "
 vim.g.have_nerd_font = true
 
+local local_bin = vim.fs.normalize(vim.fn.expand("~/.local/bin"))
+if vim.fn.isdirectory(local_bin) == 1 then
+    vim.env.PATH = local_bin .. ":" .. vim.env.PATH
+end
+
 vim.opt.backup = false
 vim.opt.swapfile = false
 
