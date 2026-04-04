@@ -42,3 +42,5 @@
 
 [includeIf "gitdir:/data/Developer/adacore/**"]
     path = .gitconfig_adacore
+[rerere]
+	enabled = true
