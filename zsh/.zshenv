@@ -1,1 +1,0 @@
-[ -f "$HOME/.global_env" ] && source "$HOME/.global_env"
