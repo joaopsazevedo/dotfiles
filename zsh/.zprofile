@@ -1,7 +1,3 @@
-if [ -n "$TMUX" ]; then
-    [ -f "$TMUX_ENV" ] && source "$TMUX_ENV"
-fi
-
 # MacOS Homebrew
 [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -16,4 +12,8 @@ if [ -d "$HOME/bin" ] ; then
 fi
 if [ -d "$HOME/.local/bin" ] ; then
     path=("$HOME/.local/bin" $path)
+fi
+
+if [ -n "$TMUX" ]; then
+    [ -f "$TMUX_ENV" ] && source "$TMUX_ENV"
 fi
