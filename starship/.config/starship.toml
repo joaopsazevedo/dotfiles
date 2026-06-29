@@ -3,7 +3,7 @@
 
 palette = "catppuccin_mocha"
 
-format = """$username$hostname$directory$git_branch$git_status$rust$python$nodejs$status$cmd_duration\n$character"""
+format = """$username$hostname$container$directory$git_branch$git_status$rust$python$nodejs$status$cmd_duration\n$character"""
 
 add_newline = true
 
@@ -19,6 +19,10 @@ disabled = false
 format = '[@$hostname ]($style)'
 ssh_only = true
 style = 'bold grey'
+
+[container]
+disabled = false
+format = '[@$symbol $name ]($style)'
 
 [os]
 disabled = false
