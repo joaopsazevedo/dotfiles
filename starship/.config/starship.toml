@@ -22,7 +22,7 @@ style = 'bold grey'
 
 [container]
 disabled = false
-format = '[@$symbol $name ]($style)'
+format = '[$symbol $name ]($style)'
 
 [os]
 disabled = false
