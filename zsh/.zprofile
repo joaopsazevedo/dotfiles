@@ -17,3 +17,7 @@ fi
 if [ -n "$TMUX" ]; then
     [ -f "$TMUX_ENV" ] && source "$TMUX_ENV"
 fi
+
+if [ -n "$HERDR_ENV" ]; then
+    [ -f "$HERDR_WORKSPACE_ENV" ] && source "$HERDR_WORKSPACE_ENV"
+fi
