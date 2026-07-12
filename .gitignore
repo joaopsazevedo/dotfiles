@@ -1,4 +1,8 @@
+# Neovim
 neovim/.config/nvim/lazy-lock.json
+
+# Herdr
 herdr/.config/herdr/herdr-client.log
 herdr/.config/herdr/herdr-server.log
 herdr/.config/herdr/session.json
+herdr/.config/herdr/release-notes.json
