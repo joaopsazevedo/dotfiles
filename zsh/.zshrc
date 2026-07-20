@@ -33,6 +33,8 @@ activate_nvm() {
         nvm_script="/opt/homebrew/opt/nvm/nvm.sh"
     elif [ -s "/usr/local/opt/nvm/nvm.sh" ]; then
         nvm_script="/usr/local/opt/nvm/nvm.sh"
+    elif [ -s "$HOME/opt/nvm/nvm.sh" ]; then
+        nvm_script="$HOME/opt/nvm/nvm.sh"
     fi
 
     if [ -n "$nvm_script" ]; then
