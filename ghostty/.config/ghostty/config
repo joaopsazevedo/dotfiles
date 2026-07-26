@@ -1,0 +1,17 @@
+theme = Catppuccin Mocha
+
+font-family = Maple Mono NF Light
+font-size = 16
+font-feature = liga
+font-feature = calt
+
+font-thicken = true
+adjust-cell-height = 0
+adjust-cell-width = 0
+adjust-font-baseline = 0
+
+shell-integration = detect
+copy-on-select = true
+
+keybind = global:ctrl+backquote=toggle_quick_terminal
+
