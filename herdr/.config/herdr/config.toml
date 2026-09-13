@@ -27,6 +27,7 @@ dark_name = "catppuccin"
 
 name = "catppuccin"
 auto_switch = false
+
 [terminal]
 # Executable used for new interactive panes.
 # Empty means $SHELL, then /bin/sh.
@@ -189,6 +190,9 @@ navigate_pane_right = "l"     # right arrow always focuses the pane to the right
 # accent = "cyan"
 
 # Background notification popup delivery
+show_agent_labels_on_pane_borders = true
+status_indicators = "symbols"
+
 [ui.toast]
 # off = disable pop-up notifications
 # herdr = show in-app toasts
@@ -196,12 +200,13 @@ navigate_pane_right = "l"     # right arrow always focuses the pane to the right
 # system = ask the OS notification service directly
 # delivery = "off"
 # delay_seconds = 1
+delivery = "herdr"
 
 [ui.toast.herdr]
 # position = "bottom-right"
 
 [ui.toast.clipboard]
-# enabled = true
+enabled = false
 # position = "bottom-center"
 
 # Play sounds when agents change state in background workspaces
