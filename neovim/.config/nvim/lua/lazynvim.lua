@@ -1,6 +1,6 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
         "git",
         "clone",
@@ -22,8 +22,8 @@ local plugins = {
     { "catppuccin/nvim",                  name = "catppuccin", priority = 1000 },
     { 'nvim-lualine/lualine.nvim' },
     { 'nvim-tree/nvim-web-devicons',      lazy = true },
-    { "williamboman/mason.nvim" },
-    { "williamboman/mason-lspconfig.nvim" },
+    { "mason-org/mason.nvim" },
+    { "mason-org/mason-lspconfig.nvim" },
     { "neovim/nvim-lspconfig" },
     {
         "folke/snacks.nvim",
@@ -41,6 +41,24 @@ local plugins = {
             },
             picker = {
                 enabled = true,
+                sources = {
+                    files = { hidden = true },
+                    grep = { hidden = true },
+                },
+                win = {
+                    input = {
+                        keys = {
+                            ["<C-M-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+                            ["<C-M-i>"] = { "toggle_ignored", mode = { "i", "n" } },
+                        },
+                    },
+                    list = {
+                        keys = {
+                            ["<C-M-h>"] = "toggle_hidden",
+                            ["<C-M-i>"] = "toggle_ignored",
+                        },
+                    },
+                },
             },
             scope = { enabled = true },
             scroll = { enabled = true },
@@ -51,9 +69,10 @@ local plugins = {
             { "<leader>ff", function() Snacks.picker.files() end,                 desc = "Find Files" },
             { "<leader>rg", function() Snacks.picker.grep() end,                  desc = "Grep" },
             { "<leader>fg", function() Snacks.picker.git_status() end,            desc = "Git Status" },
+            { "<leader>fr", function() Snacks.picker.lsp_references() end,        desc = "References" },
             { "gd",         function() Snacks.picker.lsp_definitions() end,       desc = "Goto Definition" },
             { "gD",         function() Snacks.picker.lsp_declarations() end,      desc = "Goto Declaration" },
-            { "gr",         function() Snacks.picker.lsp_references() end,        nowait = true,                  desc = "References" },
+            { "grr",        function() Snacks.picker.lsp_references() end,        desc = "References" },
             { "gi",         function() Snacks.picker.lsp_implementations() end,   desc = "Goto Implementation" },
             { "gt",         function() Snacks.picker.lsp_type_definitions() end,  desc = "Goto T[y]pe Definition" },
             { "<leader>ss", function() Snacks.picker.lsp_symbols() end,           desc = "LSP Symbols" },
@@ -61,13 +80,6 @@ local plugins = {
             { "<leader>sr", function() Snacks.picker.resume() end,                desc = "Resume" },
         }
     },
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/nvim-cmp' },
-    { 'hrsh7th/cmp-buffer' },
-    { 'hrsh7th/cmp-path' },
-    { 'hrsh7th/cmp-cmdline' },
-    { 'hrsh7th/cmp-vsnip' },
-    { 'hrsh7th/vim-vsnip' },
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -82,8 +94,7 @@ local plugins = {
             },
         },
     },
-    { 'NMAC427/guess-indent.nvim' },
-    { 'stevearc/dressing.nvim' }
+    { 'NMAC427/guess-indent.nvim' }
 }
 
 require("lazy").setup(plugins)

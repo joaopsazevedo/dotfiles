@@ -1,6 +1,5 @@
 local M = {}
 
-M.uv = vim.uv or vim.loop
 M.is_windows = vim.fn.has("win32") == 1
 
 function M.resolve_executable(candidates)

@@ -8,10 +8,11 @@ function M.setup()
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
             vim.keymap.set("n", "<leader>ho", vim.lsp.buf.hover,
-                { buffer = ev.buf, desc = "Lists all the implementations" })
+                { buffer = ev.buf, desc = "Hover documentation" })
             vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, { buffer = ev.buf, desc = "Signature help" })
             vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename" })
             vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "Code actions" })
+            vim.keymap.set("n", "<leader>fo", vim.lsp.buf.format, { buffer = ev.buf, desc = "Format with LSP" })
         end,
     })
 end
