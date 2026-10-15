@@ -39,6 +39,36 @@ vim.opt.wildignore = "*.swp,*.bak,*.pyc,*.class"
 
 vim.opt.title = true
 
+-- With no native clipboard (e.g. in the dev container), copy through OSC 52
+-- but paste from what Neovim copied last: OSC 52 reads get no reply through
+-- herdr. The "OSC 52" name also stops which-key from reading "+ on `"`.
+local has_native_clipboard = vim.fn.has("mac") == 1
+    or vim.fn.has("wsl") == 1
+    or vim.env.DISPLAY ~= nil
+    or vim.env.WAYLAND_DISPLAY ~= nil
+    or vim.env.TMUX ~= nil
+if not has_native_clipboard then
+    local osc52 = require("vim.ui.clipboard.osc52")
+    local copied = {}
+    local function copy(reg)
+        local send = osc52.copy(reg)
+        return function(lines, regtype)
+            copied[reg] = { lines, regtype }
+            send(lines)
+        end
+    end
+    local function paste(reg)
+        return function()
+            return copied[reg] or {}
+        end
+    end
+    vim.g.clipboard = {
+        name = "OSC 52",
+        copy = { ["+"] = copy("+"), ["*"] = copy("*") },
+        paste = { ["+"] = paste("+"), ["*"] = paste("*") },
+    }
+end
+
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
