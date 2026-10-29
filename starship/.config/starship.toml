@@ -3,7 +3,7 @@
 
 palette = "catppuccin_mocha"
 
-format = """$username$hostname$container$directory$git_branch$git_status$rust$python$nodejs$status$cmd_duration\n$character"""
+format = """$username$hostname${custom.container}$directory$git_branch$git_status$rust$python$nodejs$status$cmd_duration\n$character"""
 
 add_newline = true
 
@@ -20,9 +20,12 @@ format = '[@$hostname ]($style)'
 ssh_only = true
 style = 'bold grey'
 
-[container]
-disabled = false
-format = '[$symbol $name ]($style)'
+[custom.container]
+command = 'hostname'
+when = 'test -f /run/.containerenv || test -f /.dockerenv'
+symbol = '⬢'
+style = 'bold red dimmed'
+format = '[$symbol $output ]($style)'
 
 [os]
 disabled = false
